@@ -7,16 +7,16 @@
 //
 
 #import "BDAppDelegate.h"
-
+#import "BDViewController.h"
 
 @implementation BDAppDelegate
 {
     CLLocationManager *_locationManager;
+    BDViewController *_viewController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"applicationDidFinishLaunching");
 
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -33,6 +33,18 @@
     [_locationManager startMonitoringForRegion:region];
     [_locationManager stopRangingBeaconsInRegion:region];
     //[_locationManager startRangingBeaconsInRegion:region];
+
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Display the main menu.
+    _viewController = [[BDViewController alloc] init];
+    
+    self.window.rootViewController = _viewController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    [_viewController log:@"applicationDidFinishLaunching"];
     
     return YES;
 }
@@ -40,13 +52,13 @@
 - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
     if(state == CLRegionStateInside) {
-        NSLog(@"locationManager didDetermineState INSIDE for %@", region.identifier);
+        [_viewController log:[NSString stringWithFormat:@"locationManager didDetermineState INSIDE for %@", region.identifier]];
     }
     else if(state == CLRegionStateOutside) {
-        NSLog(@"locationManager didDetermineState OUTSIDE for %@", region.identifier);
+        [_viewController log:[NSString stringWithFormat:@"locationManager didDetermineState OUTSIDE for %@", region.identifier]];
     }
     else {
-        NSLog(@"locationManager didDetermineState OTHER for %@", region.identifier);
+        [_viewController log:[NSString stringWithFormat:@"locationManager didDetermineState OTHER for %@", region.identifier]];
     }
 }
 
@@ -59,27 +71,27 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    NSLog(@"applicationWillResignActive");
+    [_viewController log:@"applicationWillResignActive"];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    NSLog(@"applicationDidEnterBackground");
+    [_viewController log:@"applicationDidEnterBackground"];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    NSLog(@"applicationWillEnterForeground");
+    [_viewController log:@"applicationWillEnterForeground"];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    NSLog(@"applicationDidBecomeActive");
+    [_viewController log:@"applicationDidBecomeActive"];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    NSLog(@"applicationWillTerminate");
+    [_viewController log:@"applicationWillTerminate"];
 }
 
 @end

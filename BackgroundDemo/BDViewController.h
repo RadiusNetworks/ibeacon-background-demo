@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BDViewController : UIViewController
-
+    - (void)log: (NSString *) line;
 @end

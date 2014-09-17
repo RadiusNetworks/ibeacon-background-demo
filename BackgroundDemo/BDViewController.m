@@ -7,6 +7,7 @@
 //
 
 #import "BDViewController.h"
+#import "BDAppDelegate.h"
 
 @interface BDViewController ()
 
@@ -26,4 +27,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)touchDumpLog:(id)sender {
+    BDAppDelegate *appDelegate = (BDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSLog(@"--------------");
+    NSString * combinedLog = [appDelegate.internalLog componentsJoinedByString:@"\n"];
+    NSLog(combinedLog);
+    NSLog(@"--------------");
+
+}
 @end

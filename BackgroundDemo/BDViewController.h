@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BDViewController : UIViewController
+- (IBAction)touchDumpLog:(id)sender;
 
 @end

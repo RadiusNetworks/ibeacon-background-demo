@@ -18,13 +18,13 @@
 {
     self.internalLog = [[NSMutableArray alloc] init];
     [self logString: @"applicationDidFinishLaunching"];
-    
 
     _locationManager = [[CLLocationManager alloc] init];
+    [_locationManager requestAlwaysAuthorization];
     _locationManager.delegate = self;
     CLBeaconRegion *region;
 
-    region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"] major: 2764 minor: 1 identifier: @"region1"];
+    region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"] major: 1 minor: 1 identifier: @"region1"];
     region.notifyEntryStateOnDisplay = YES;
     [_locationManager startMonitoringForRegion:region];
     [_locationManager stopRangingBeaconsInRegion:region];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EEC4643519EDC04800B2A85A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EEC4643319EDC04800B2A85A /* README.md */; };
+		EEC4643619EDC04800B2A85A /* TemplateIcon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEC4643419EDC04800B2A85A /* TemplateIcon2x.png */; };
 		EEEB880D182ACEA600B866AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEEB880C182ACEA600B866AB /* Foundation.framework */; };
 		EEEB880F182ACEA600B866AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEEB880E182ACEA600B866AB /* CoreGraphics.framework */; };
 		EEEB8811182ACEA600B866AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEEB8810182ACEA600B866AB /* UIKit.framework */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EEC4643319EDC04800B2A85A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EEC4643419EDC04800B2A85A /* TemplateIcon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TemplateIcon2x.png; sourceTree = "<group>"; };
 		EEEB8809182ACEA600B866AB /* BackgroundDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackgroundDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEEB880C182ACEA600B866AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EEEB880E182ACEA600B866AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -84,6 +88,8 @@
 		EEEB8800182ACEA600B866AB = {
 			isa = PBXGroup;
 			children = (
+				EEC4643319EDC04800B2A85A /* README.md */,
+				EEC4643419EDC04800B2A85A /* TemplateIcon2x.png */,
 				EEEB8812182ACEA600B866AB /* BackgroundDemo */,
 				EEEB8834182ACEA600B866AB /* BackgroundDemoTests */,
 				EEEB880B182ACEA600B866AB /* Frameworks */,
@@ -232,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC4643619EDC04800B2A85A /* TemplateIcon2x.png in Resources */,
 				EEEB8823182ACEA600B866AB /* Main_iPad.storyboard in Resources */,
 				EEEB8828182ACEA600B866AB /* Images.xcassets in Resources */,
 				EEEB8820182ACEA600B866AB /* Main_iPhone.storyboard in Resources */,
@@ -256,6 +263,7 @@
 			files = (
 				EEEB8826182ACEA600B866AB /* BDViewController.m in Sources */,
 				EEEB881D182ACEA600B866AB /* BDAppDelegate.m in Sources */,
+				EEC4643519EDC04800B2A85A /* README.md in Sources */,
 				EEEB8819182ACEA600B866AB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

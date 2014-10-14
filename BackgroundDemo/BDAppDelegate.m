@@ -12,6 +12,8 @@
 @implementation BDAppDelegate
 {
     CLLocationManager *_locationManager;
+    UIBackgroundTaskIdentifier _backgroundTask;
+    Boolean _inBackground;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -29,6 +31,9 @@
     [_locationManager startMonitoringForRegion:region];
     [_locationManager stopRangingBeaconsInRegion:region];
     [_locationManager startRangingBeaconsInRegion:region];
+    _backgroundTask = UIBackgroundTaskInvalid;
+    _inBackground = YES;
+
     
     return YES;
 }
@@ -45,6 +50,9 @@
     }
     else {
         [self logString: [NSString stringWithFormat:@"locationManager didDetermineState OTHER for %@", region.identifier]];
+    }
+    if (_inBackground) {
+        [self extendBackgroundRunningTime];
     }
 }
 
@@ -63,6 +71,38 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     [self logString: [NSString stringWithFormat:@"applicationDidEnterBackground"]];
+    [self extendBackgroundRunningTime];
+    _inBackground = YES;
+}
+
+
+- (void)extendBackgroundRunningTime {
+    if (_backgroundTask != UIBackgroundTaskInvalid) {
+        // if we are in here, that means the background task is already running.
+        // don't restart it.
+        return;
+    }
+    NSLog(@"Attempting to extend background running time");
+    
+    __block Boolean self_terminate = YES;
+    
+    _backgroundTask = [[UIApplication sharedApplication] beginBackgroundTaskWithName:@"DummyTask" expirationHandler:^{
+        NSLog(@"Background task expired by iOS");
+        if (self_terminate) {
+            [[UIApplication sharedApplication] endBackgroundTask:_backgroundTask];
+            _backgroundTask = UIBackgroundTaskInvalid;
+        }
+    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"Background task started");
+        
+        while (true) {
+            NSLog(@"background time remaining: %8.2f", [UIApplication sharedApplication].backgroundTimeRemaining);
+            [NSThread sleepForTimeInterval:1];
+        }
+        
+    });
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -73,6 +113,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [self logString: [NSString stringWithFormat:@"applicationDidBecomeActive"]];
+    _inBackground = NO;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -86,6 +127,7 @@
     [self.internalLog addObject: lineToLog];
     NSLog(lineToLog);
 }
+
 
 @end
 

@@ -82,6 +82,7 @@ I ran, app with self_terminate=NO, meaning the background task kept running unti
 2014-10-14 13:58:28.538 BackgroundDemo[352:39238] 2014-10-14 17:58:28 +0000 locationManager didRangeBeacons
 2014-10-14 13:58:28.643 BackgroundDemo[352:39261] background time remaining:     0.00
 ...
+```
 
 
 #Test 3
